@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  ls.redis:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9001:80"
+     
+  mongo:      
+    volumes:
+      - mong_data:/data/db

@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  ls.redis:
+    image: ${DOCKER_REGISTRY-}lsredis
+    build:
+      context: .
+      dockerfile: LS.Redis/Dockerfile
+    container_name: webapi-container
+    networks:
+      - api-network
+    depends_on:
+      - redis
+      - mongo
+
+  redis:
+    image: redis:alpine
+    container_name: redis-container
+    networks:
+      - api-network
+
+  mongo:
+    image: mongo:3-xenial
+    container_name: mongo-container
+    networks:
+      - api-network
+
+volumes:  
+  mong_data:
+
+networks:
+  api-network:
